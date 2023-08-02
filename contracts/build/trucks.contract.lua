@@ -2,7 +2,9 @@ local trucks = require("trucks")
 do
   trucks["mkconfig!"]()
 end
+trucks["system!"]({panic = "unwind", verbose = "true"})
 trucks["defaults!"]({["run-ctx"] = "npm", cmd = "run devstart", sync = "npm install"})
-local services = {{name = "user", github = "mattg1243/sb-user-service"}, {name = "courier", github = "phasewalk1/courier"}}
-trucks["service!"](services)
-return trucks["getconfig!"]()
+trucks["service!"]("fe", {github = "mattg1243/sb-frontend"})
+trucks["service!"]("courier", {github = "phasewalk1/courier", ["run-ctx"] = "cargo", cmd = "watch-x run"})
+local contract = trucks["contract!"]()
+return contract

@@ -109,13 +109,16 @@ func installTrucks() error {
 	getTrucks := exec.Command("cp", "-r", "trucks", "..")
 	util.ExecWithFatal(getTrucks, "Error copying trucks:")
 
+    rmUnwanted := exec.Command("rm", "../trucks/installer.go")
+    util.ExecWithFatal(rmUnwanted, "Error pruning trucks:")
+
 	err = os.Chdir("..")
 	if err != nil {
 		return err
 	}
 	log.Debug("removing skateboard directory")
 
-	rmUnwanted := exec.Command("rm", "-rf", "skateboard")
+	rmUnwanted = exec.Command("rm", "-rf", "skateboard")
 	util.ExecWithFatal(rmUnwanted, "Error removing skateboard directory:")
 
 	return nil

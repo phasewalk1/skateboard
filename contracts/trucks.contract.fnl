@@ -3,17 +3,19 @@
 (do
   (trucks.mkconfig!))
 
+(trucks.system! {:panic "unwind"
+:verbose "true"})
+
 (trucks.defaults! {:run-ctx "npm"
-            :cmd "run devstart"
-            :sync "npm install"})
+  :cmd "run devstart"
+  :sync "npm install"})
 
-(local services [{:name "user"
-                  :github "mattg1243/sb-user-service"}
-                 {:name "courier"
-                  :github "phasewalk1/courier"}])
+(trucks.service! :fe {:github "mattg1243/sb-frontend"})
+(trucks.service! :courier {:github "phasewalk1/courier"
+                   :run-ctx "cargo"
+                   :cmd "watch-x run"})
 
-(trucks.service! services)
+;; (trucks.mallgrab! (trucks.contract!))
 
-;; (trucks.mallgrab! (trucks.getconfig!))
-
-(trucks.getconfig!)
+(local contract (trucks.contract!))
+contract

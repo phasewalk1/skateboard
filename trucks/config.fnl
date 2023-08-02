@@ -20,19 +20,23 @@
 (lambda system! [system]
   (tset (. _G :config) :system system))
 
-(lambda getconfig! []
+(lambda contract! []
   (. _G :config))
 
 (lambda defaults! [defaults]
   (tset (. _G :config) :defaults defaults))
 
-(lambda service! [services]
+(lambda service! [name service]
+  (tset service :name name)
+  (table.insert (. _G :config :services) service))
+
+(lambda services! [services]
   (each [_ v (ipairs services)]
     (print (.. "Adding service " (. v :name)))
     (table.insert (. _G :config :services) v)))
 
 {:mkconfig! mkconfig!
- :getconfig! getconfig!
+ :system! system!
+ :contract! contract!
  :defaults! defaults!
  :service! service!}
-

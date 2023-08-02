@@ -30,7 +30,7 @@ import (
 var home string
 
 // TODO:
-// - [ ] Impl `check` for fennel
+// - [x] Impl `check` for trucks
 // - [ ] Impl `check` for yaml
 // - [ ] Impl `check` for toml
 var checkCmd = &cobra.Command{
@@ -60,9 +60,9 @@ var checkCmd = &cobra.Command{
 			return
 		}
 		log.Debug("current working directory: ", pwd)
-		execFnl := "require 'fennel'.dofile('trucks.contract.fnl')"
+		execFnl := "config = require 'fennel'.dofile('trucks.contract.fnl'); return config"
 		if err := L.DoString(execFnl); err != nil {
-			log.Fatal("failed to load trucks.contract.lua: ", err)
+			log.Fatal("failed to execute fennel.dofile('trucks.contract.fnl'): ", err)
 			return
 		}
 
@@ -77,7 +77,7 @@ var checkCmd = &cobra.Command{
 		}
 		var cfg config.Config
 		ToTable(luaConfig.(*lua.LTable), &cfg)
-		cfg.Show()
+		// cfg.Show()
 	},
 }
 

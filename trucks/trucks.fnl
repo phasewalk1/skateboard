@@ -16,7 +16,8 @@
 (local config (require :config))
 
 (tset mod :mkconfig! (. config :mkconfig!))
-(tset mod :getconfig! (. config :getconfig!))
+(tset mod :system! (. config :system!))
+(tset mod :contract! (. config :contract!))
 (tset mod :defaults! (. config :defaults!))
 (tset mod :service! (. config :service!))
 (tset mod :mallgrab! (. util :mallgrab!))
