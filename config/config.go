@@ -15,9 +15,9 @@ Copyright (C) 2023 Ethan Gallucci
 package config
 
 import (
-	"fmt"
 	"io/ioutil"
 
+    "github.com/charmbracelet/log"
 	"github.com/BurntSushi/toml"
 )
 
@@ -32,26 +32,26 @@ type Config struct {
 }
 
 func (c *Config) Show() {
+    log.Debug("trucks.system!")
 	c.ShowSystem()
 	c.ShowDefaults()
+    log.Debug("trucks.service!")
 	c.ShowServices()
 }
 
 func (c *Config) ShowSystem() {
-	fmt.Println("panic:", c.System.Panic)
+	log.Debug("trucks.system!", "panic:", c.System.Panic)
 }
 
 func (c *Config) ShowDefaults() {
-	fmt.Printf("Defaults! ")
 	for setting, val := range c.Defaults {
-		fmt.Printf("%s: %s\n", setting, val)
+        log.Debug("trucks.defaults!", setting, val)
 	}
 }
 
 func (c *Config) ShowServices() {
-	fmt.Printf("Services! ")
 	for svc := range c.Services {
-		fmt.Println("Service:", c.Services[svc])
+        log.Debug("trucks.service!", c.Services[svc])
 	}
 }
 

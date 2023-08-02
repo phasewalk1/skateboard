@@ -77,7 +77,8 @@ var checkCmd = &cobra.Command{
 		}
 		var cfg config.Config
 		ToTable(luaConfig.(*lua.LTable), &cfg)
-		// cfg.Show()
+        log.Info("trucks contract is valid ✓")
+		cfg.Show()
 	},
 }
 
