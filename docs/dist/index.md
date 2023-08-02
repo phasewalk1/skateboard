@@ -1,6 +1,8 @@
 <div align="left">
     <h1 >
-        skateboard 
+        <a href="https://github.com/phasewalk1/skateboard">
+            skateboard 
+        </a>
         <img src="./docs/dist/assets/skateboard.svg" align="left"/>
     </h1>
 </div>
