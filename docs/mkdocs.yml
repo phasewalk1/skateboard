@@ -4,17 +4,19 @@ site_author: skateboard Developers
 docs_dir: dist
 
 nav:
-  - About: 
-    - index.md
+  - index.md
   - Options:
     - ./cobra/skateboard.md 
+    - install: ./cobra/skateboard_install.md
     - new: ./cobra/skateboard_new.md
+    - check: ./cobra/skateboard_check.md
     - sync: ./cobra/skateboard_sync.md
     - up: ./cobra/skateboard_up.md
-    - trucks: ./cobra/skateboard_trucks.md
     - service: ./cobra/skateboard_service.md
     - mkdocs: ./cobra/skateboard_mkdocs.md
     - completion: ./cobra/skateboard_completion.md 
+  - Trucks:
+    - sections/trucks/index.md
 
 theme:
   name: material
