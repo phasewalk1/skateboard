@@ -1,7 +1,5 @@
 local trucks = require("trucks")
-do
-  trucks["mkconfig!"]()
-end
+trucks["mkconfig!"]()
 trucks["system!"]({panic = "unwind", verbose = "true"})
 trucks["defaults!"]({["run-ctx"] = "npm", cmd = "run devstart", sync = "npm install"})
 trucks["service!"]("fe", {github = "mattg1243/sb-frontend"})
