@@ -17,23 +17,46 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/phasewalk1/skateboard/bootstrap"
 	"github.com/phasewalk1/skateboard/config"
 
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
-	"github.com/yuin/gopher-lua"
+	lua "github.com/yuin/gopher-lua"
 )
 
-var trucksCmd = &cobra.Command{
-	Use:   "trucks",
-	Short: "Use trucks to write your config in Fennel/Lua",
-	Long:  `This command checks a contract for validity`,
+var home string
+
+// TODO:
+// - [ ] Impl `check` for fennel
+// - [ ] Impl `check` for yaml
+// - [ ] Impl `check` for toml
+var checkCmd = &cobra.Command{
+	Use:   "check",
+	Short: "Checks a contract for validity",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("trucks called")
+		log.Debug("running check command")
+
+		log.Debug("starting a new Lua state")
 		L := lua.NewState()
+		log.Debug("defer: closing Lua state")
 		defer L.Close()
 
-		if err := L.DoFile("include/trucks.contract.lua"); err != nil {
-			panic(err)
+		home, _ := cmd.Flags().GetString("home")
+		log.Debug("active-home: ", home)
+		homeIncld := fmt.Sprintf("%s/include", home)
+		log.Debug("active-include: ", homeIncld)
+		extendLuaPath := fmt.Sprintf("package.path = package.path .. ';%s/?.lua'", homeIncld)
+		log.Debug("extending Lua package.path: ", extendLuaPath)
+		if err := L.DoString(extendLuaPath); err != nil {
+			log.Fatal("failed to extend Lua package.path: ", err)
+			return
+		}
+		execFnl := "require 'fennel'.dofile('trucks.contract.fnl')"
+		if err := L.DoString(execFnl); err != nil {
+			log.Fatal("failed to load trucks.contract.lua: ", err)
+			return
 		}
 
 		luaConfig := L.Get(-1)
@@ -98,15 +121,10 @@ func ToTable(table *lua.LTable, output interface{}) {
 }
 
 func init() {
-	rootCmd.AddCommand(trucksCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// trucksCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// trucksCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.AddCommand(checkCmd)
+	home, err := bootstrap.SkateboardPath()
+	if err != nil {
+		home = "~/.skateboard"
+	}
+	checkCmd.Flags().StringVarP(&home, "home", "H", home, "path to skateboard home directory")
 }

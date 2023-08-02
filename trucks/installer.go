@@ -89,9 +89,28 @@ func installTrucks() error {
 
 	log.Debug("copying trucks into $HOME/.skateboard")
 
-	getTrucks := exec.Command("cp", "-r", "skateboard/trucks", ".")
+	err := os.Chdir("skateboard")
+	if err != nil {
+		return err
+	}
+	pwd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+	log.Debug("pwd:", pwd)
+	runMake := exec.Command("make")
+	util.ExecWithFatal(runMake, "Error building trucks:")
+
+	cpObjects := exec.Command("sh", "-c", "cp -r include/*.lua ../include")
+	util.ExecWithFatal(cpObjects, "Error copying trucks objects:")
+
+	getTrucks := exec.Command("cp", "-r", "trucks", "..")
 	util.ExecWithFatal(getTrucks, "Error copying trucks:")
 
+	err = os.Chdir("..")
+	if err != nil {
+		return err
+	}
 	log.Debug("removing skateboard directory")
 
 	rmUnwanted := exec.Command("rm", "-rf", "skateboard")

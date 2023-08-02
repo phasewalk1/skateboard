@@ -22,9 +22,11 @@ import (
 
 func ExecWithFatal(cmd *exec.Cmd, msg string) {
 	out, err := cmd.CombinedOutput()
+	log.Debug("executing:", cmd.String())
 	if err != nil {
+		log.Warn(string(out))
 		log.Fatal(msg, err)
 		panic(err)
 	}
-	log.Debug("%s\n", out)
+	log.Debug(string(out))
 }
