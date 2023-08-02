@@ -1,0 +1,13 @@
+[[service]]
+  name = "user"
+  github = "<repo-owner>/<repo-name>"
+  run-ctx = "npm"
+  cmd = "run devstart"
+  sync = "npm install"
+
+[[service]]
+  name = "using-docker"
+  github = "<repo-owner>/<repo-name>"
+  profile = "<path-to-dockerfile>"
+  env-bootstrap = "<path-to-dev-env-file>"
+
