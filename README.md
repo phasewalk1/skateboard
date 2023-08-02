@@ -37,7 +37,7 @@ contract
 Working in a small team but want to onboard new developers without having them clone and run every service? *skateboard* provides an automated approach to bundling your system by using a single contract file, and provides bindings for generating bootstrap scripts to help you automate onboarding and focus on shipping.
 ## Features
 - [trucks](https://github.com/phasewalk1/skateboard/blob/master/contracts/trucks.contract.fnl)
-    - Write wheels for your applications in a Lisp syntax using skateboard's [trucks library](https://github.com/phasewalk1/skateboard/blob/master/trucks/trucks.fnl) in [Fennel](https://fennel-lang.org)
+    - Give your application wheels by writing a trucks contract that defines your system and its components. Contracts are written in Lisp syntax using skateboard's [trucks library](https://github.com/phasewalk1/skateboard/blob/master/trucks/trucks.fnl) in [Fennel](https://fennel-lang.org)
     - _skateboard_ embeds any necessary dependencies so you can get started right away with `skateboard install`
 - Sync service repositories
 - Run the system and all it’s services with goroutines in a single shell with unified logs

@@ -40,11 +40,13 @@ func BootstrapTrucks(home string, noDeps bool) error {
 
 func checkoutAndBuildFennel() error {
 	fnlSrcRemote := "https://git.sr.ht/~technomancy/fennel"
-	log.Debug("checking out Fennel source...")
-	log.Debug("remote:", fnlSrcRemote)
+
+    scope := "trucks.install.fennel"
+	log.Debug(scope, "checking out Fennel source...")
+	log.Debug(scope, "remote:", fnlSrcRemote)
 
 	cloneFnlSrc := exec.Command("git", "clone", fnlSrcRemote)
-	util.ExecWithFatal(cloneFnlSrc, "Error cloning Fennel source:")
+	util.ExecWithFatal(cloneFnlSrc, scope, "Error cloning Fennel source:")
 
 	err := os.Chdir("fennel")
 	if err != nil {
@@ -52,7 +54,7 @@ func checkoutAndBuildFennel() error {
 	}
 
 	makeObjects := exec.Command("make")
-	util.ExecWithFatal(makeObjects, "Error building Fennel:")
+	util.ExecWithFatal(makeObjects, scope, "Error building Fennel:")
 	return nil
 }
 
@@ -61,6 +63,8 @@ func mvFennelLibToHome(home string) error {
 	if err != nil {
 		return err
 	}
+
+    scope := "trucks.install.fennel"
 
 	err = os.Mkdir("include", 0755)
 	if err != nil {
@@ -75,10 +79,10 @@ func mvFennelLibToHome(home string) error {
 	}
 
 	cpLuaLibrary := exec.Command("cp", "fennel/fennel.lua", "include")
-	util.ExecWithFatal(cpLuaLibrary, "Error copying Fennel library:")
+	util.ExecWithFatal(cpLuaLibrary, scope, "Error copying Fennel library:")
 
 	rmUnwanted := exec.Command("rm", "-rf", "fennel")
-	util.ExecWithFatal(rmUnwanted, "Error removing Fennel source:")
+	util.ExecWithFatal(rmUnwanted, scope, "Error removing Fennel source:")
 
 	return nil
 }
@@ -86,8 +90,10 @@ func mvFennelLibToHome(home string) error {
 func installTrucks() error {
 	sk8 := "https://github.com/phasewalk1/skateboard"
 
+    scope := "trucks.install.trucks"
+
 	cloneSkateboard := exec.Command("git", "clone", "--branch", "master", sk8)
-	util.ExecWithFatal(cloneSkateboard, "Error cloning skateboard:")
+	util.ExecWithFatal(cloneSkateboard, scope, "Error cloning skateboard:")
 
 	log.Debug("copying trucks into $HOME/.skateboard")
 
@@ -101,16 +107,16 @@ func installTrucks() error {
 	}
 	log.Debug("pwd:", pwd)
 	runMake := exec.Command("make")
-	util.ExecWithFatal(runMake, "Error building trucks:")
+	util.ExecWithFatal(runMake, scope, "Error building trucks:")
 
 	cpObjects := exec.Command("sh", "-c", "cp -r include/*.lua ../include")
-	util.ExecWithFatal(cpObjects, "Error copying trucks objects:")
+	util.ExecWithFatal(cpObjects, scope, "Error copying trucks objects:")
 
 	getTrucks := exec.Command("cp", "-r", "trucks", "..")
-	util.ExecWithFatal(getTrucks, "Error copying trucks:")
+	util.ExecWithFatal(getTrucks, scope ,"Error copying trucks:")
 
     rmUnwanted := exec.Command("rm", "../trucks/installer.go")
-    util.ExecWithFatal(rmUnwanted, "Error pruning trucks:")
+    util.ExecWithFatal(rmUnwanted, scope, "Error pruning trucks:")
 
 	err = os.Chdir("..")
 	if err != nil {
@@ -119,7 +125,7 @@ func installTrucks() error {
 	log.Debug("removing skateboard directory")
 
 	rmUnwanted = exec.Command("rm", "-rf", "skateboard")
-	util.ExecWithFatal(rmUnwanted, "Error removing skateboard directory:")
+	util.ExecWithFatal(rmUnwanted, scope, "Error removing skateboard directory:")
 
 	return nil
 }

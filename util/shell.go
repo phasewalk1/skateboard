@@ -20,9 +20,9 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func ExecWithFatal(cmd *exec.Cmd, msg string) {
+func ExecWithFatal(cmd *exec.Cmd, scope string, msg string) {
 	out, err := cmd.CombinedOutput()
-	log.Debug("executing:", cmd.String())
+	log.Debug(scope, "executing:", cmd.String())
 	if err != nil {
 		log.Warn(string(out))
 		log.Fatal(msg, err)

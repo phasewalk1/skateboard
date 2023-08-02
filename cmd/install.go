@@ -46,10 +46,11 @@ var installCmd = &cobra.Command{
 		trucksToggle, _ := cmd.Flags().GetBool("trucks")
 		noDeps, _ := cmd.Flags().GetBool("no-deps")
 		log.Info("installing skateboard")
-		log.Debug("skateboard path:", sk8)
-		log.Debug("trucks:", trucksToggle)
-		log.Debug("force:", force)
-		log.Debug("no-deps:", noDeps)
+        scope := "skateboard.install"
+		log.Debug(scope, "skateboard path:", sk8)
+		log.Debug(scope, "trucks:", trucksToggle)
+		log.Debug(scope, "force:", force)
+		log.Debug(scope, "no-deps:", noDeps)
 		err = boot.TryMakeSkateboard(sk8, force, trucksToggle, noDeps)
 		if err != nil {
 			return

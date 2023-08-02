@@ -28,19 +28,21 @@ var newCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	PreRun: func(cmd *cobra.Command, args []string) {
 		trucks, _ := cmd.Flags().GetBool("trucks")
+        scope := "new.mode"
 		if !trucks {
 			ymode, _ := cmd.Flags().GetBool("yaml")
 			if ymode == false {
-				log.Debug("mode: toml")
+				log.Debug(scope, "mode:", "toml")
 			} else {
-				log.Debug("mode: yaml")
+				log.Debug(scope, "mode:", "yaml")
 			}
 		} else {
-			log.Debug("mode: trucks (default)")
+			log.Debug(scope, "mode:", "trucks (default)")
 		}
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-		log.Info("bootstrapping", args[0])
+        scope := "new.bootstrap"
+		log.Info(scope, "bootstrapping", args[0])
 		trucks, _ := cmd.Flags().GetBool("trucks")
 		force, _ := cmd.Flags().GetBool("force")
 		if trucks {
