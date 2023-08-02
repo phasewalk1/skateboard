@@ -9,22 +9,24 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func BootstrapTrucks(home string) error {
+func BootstrapTrucks(home string, noDeps bool) error {
 	err := os.Chdir(home)
 	if err != nil {
 		return err
 	}
 
-	err = checkoutAndBuildFennel()
-	if err != nil {
-		log.Fatal("error bootstrapping Fennel:", err)
-		return err
-	}
+	if !noDeps {
+		err = checkoutAndBuildFennel()
+		if err != nil {
+			log.Fatal("error bootstrapping Fennel:", err)
+			return err
+		}
 
-	err = mvFennelLibToHome(home)
-	if err != nil {
-		log.Fatal("error copying sources into home:", err)
-		return err
+		err = mvFennelLibToHome(home)
+		if err != nil {
+			log.Fatal("error copying sources into home:", err)
+			return err
+		}
 	}
 
 	err = installTrucks()

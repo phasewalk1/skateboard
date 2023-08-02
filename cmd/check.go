@@ -17,6 +17,7 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 
 	"github.com/phasewalk1/skateboard/bootstrap"
 	"github.com/phasewalk1/skateboard/config"
@@ -53,6 +54,12 @@ var checkCmd = &cobra.Command{
 			log.Fatal("failed to extend Lua package.path: ", err)
 			return
 		}
+		pwd, err := os.Getwd()
+		if err != nil {
+			log.Fatal("failed to get current working directory: ", err)
+			return
+		}
+		log.Debug("current working directory: ", pwd)
 		execFnl := "require 'fennel'.dofile('trucks.contract.fnl')"
 		if err := L.DoString(execFnl); err != nil {
 			log.Fatal("failed to load trucks.contract.lua: ", err)
@@ -63,7 +70,9 @@ var checkCmd = &cobra.Command{
 		fmt.Println(luaConfig.String())
 
 		if _, ok := luaConfig.(*lua.LTable); !ok {
-			fmt.Println("the returned value is not a valid config table")
+			log.Warn("fennel")
+			log.Debug("returned value: ", luaConfig.String())
+			log.Fatal("failed to load trucks.contract.lua: ", err)
 			return
 		}
 		var cfg config.Config

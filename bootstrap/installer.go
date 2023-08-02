@@ -45,7 +45,7 @@ func SkateboardExists(home string) (bool, error) {
 	return true, nil
 }
 
-func TryMakeSkateboard(sk8path string, force bool, trucksToggle bool) error {
+func TryMakeSkateboard(sk8path string, force bool, trucksToggle bool, noDeps bool) error {
 	exis, err := SkateboardExists(sk8path)
 	if err != nil {
 		return err
@@ -56,17 +56,17 @@ func TryMakeSkateboard(sk8path string, force bool, trucksToggle bool) error {
 		log.Warn("removing existing skateboard installation")
 		os.RemoveAll(sk8path)
 	}
-	return mkskateboard(sk8path, trucksToggle)
+	return mkskateboard(sk8path, trucksToggle, noDeps)
 }
 
-func mkskateboard(home string, trucksToggle bool) error {
+func mkskateboard(home string, trucksToggle bool, noDeps bool) error {
 	err := os.Mkdir(home, 0755)
 	if err != nil {
 		log.Fatal("couldn't create $HOME/.skateboard:", err)
 		return err
 	}
 	if trucksToggle {
-		err := trucks.BootstrapTrucks(home)
+		err := trucks.BootstrapTrucks(home, noDeps)
 		if err != nil {
 			log.Fatal("couldn't bootstrap trucks:", err)
 			return err

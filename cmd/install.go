@@ -45,10 +45,13 @@ var installCmd = &cobra.Command{
 		}
 
 		trucksToggle, _ := cmd.Flags().GetBool("trucks")
+		noDeps, _ := cmd.Flags().GetBool("no-deps")
 		log.Info("installing skateboard")
 		log.Debug("skateboard path:", sk8)
 		log.Debug("trucks:", trucksToggle)
-		err = boot.TryMakeSkateboard(sk8, force, trucksToggle)
+		log.Debug("force:", force)
+		log.Debug("no-deps:", noDeps)
+		err = boot.TryMakeSkateboard(sk8, force, trucksToggle, noDeps)
 		if err != nil {
 			return
 		}
@@ -60,4 +63,5 @@ func init() {
 
 	installCmd.Flags().BoolP("trucks", "t", true, "install trucks")
 	installCmd.Flags().BoolP("force", "f", false, "Force install skateboard even if it already exists")
+	installCmd.Flags().BoolP("no-deps", "x", false, "Don't install dependencies")
 }

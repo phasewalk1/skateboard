@@ -11,10 +11,14 @@
 ;;	GNU General Public License for more details.
 
 (lambda mkconfig! []
-  `(. _G :config)
-  (tset (. _G :config) :system {})
-  (tset (. _G :config) :defaults {})
-  (tset (. _G :config) :services {}))
+  (local config {})
+  (tset config :system {})
+  (tset config :defaults {})
+  (tset config :services {})
+  (tset _G :config config))
+
+(lambda system! [system]
+  (tset (. _G :config) :system system))
 
 (lambda getconfig! []
   (. _G :config))
