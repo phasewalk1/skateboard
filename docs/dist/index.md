@@ -3,7 +3,7 @@
         <a href="https://github.com/phasewalk1/skateboard">
             skateboard 
         </a>
-        <img src="./dist/assets/skateboard.svg" align="left"/>
+        <img src="https://github.com/phasewalk1/skateboard/blob/master/docs/dist/assets/skateboard.svg" align="left"/>
     </h1>
 </div>
 
