@@ -16,22 +16,24 @@
 (local trucks (require :trucks))
 
 (do
-  (trucks.mkconfig!))
+  (trucks.mkconfig!)
 
-(trucks.system! {:panic "unwind"
-  :verbose "true"})
+  (trucks.system! {:panic "unwind"
+    :verbose "true"})
 
-(trucks.defaults! {:run-ctx "npm"
-  :cmd "run devstart"
-  :sync "npm install"})
+  (trucks.defaults! {:run-ctx "npm"
+    :cmd "run devstart"
+    :sync "npm install"})
 
-(trucks.service! :fe {:github "mattg1243/sb-frontend"})
-(trucks.service! :courier {:github "phasewalk1/courier"
-                   :run-ctx "cargo"
-                   :cmd "watch-x run"})
+  (trucks.service! :fe {:github "mattg1243/sb-frontend"})
+  (trucks.service! :courier {:github "phasewalk1/courier"
+                     :run-ctx "cargo"
+                     :cmd "watch-x run"})
 
-(local contract (trucks.contract!))
-contract
+  ;; (trucks.mallgrab! (trucks.contract!))
+
+  (local contract (trucks.contract!))
+  contract)
 ```
 
 Working in a small team but want to onboard new developers without having them clone and run every service? *skateboard* provides an automated approach to bundling your system by using a single contract file, and provides bindings for generating bootstrap scripts to help you automate onboarding and focus on shipping.
