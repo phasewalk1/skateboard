@@ -21,6 +21,7 @@ import (
 	"sync"
 
 	"github.com/phasewalk1/skateboard/bootstrap"
+	"github.com/phasewalk1/skateboard/service"
 	"github.com/phasewalk1/skateboard/util"
 
 	"github.com/charmbracelet/log"
@@ -47,6 +48,7 @@ var upCmd = &cobra.Command{
 		if filepath.Ext(contractPath) == ".fnl" {
 			sysConfig, err := bootstrap.LoadTrucksContract(contractPath)
 			sysConfig.EmplaceDefaults()
+
 			if err != nil {
 				log.Fatal("config", "fennel", err)
 			}
@@ -56,8 +58,9 @@ var upCmd = &cobra.Command{
 			} else {
 				log.Info("sync", "false", "skipping sync operation")
 			}
+
 			log.Info("service!", "starting services...", true)
-			bootstrap.Upper(&sysConfig, noSync, ctx, cancel)
+			service.Puppeteer(&sysConfig, noSync, ctx, cancel)
 
 			done := make(chan struct{})
 			go func() {

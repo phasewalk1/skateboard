@@ -15,8 +15,6 @@ Copyright (C) 2023 Ethan Gallucci
 package cmd
 
 import (
-	"encoding/json"
-	"fmt"
 	"os"
 	"path/filepath"
 
@@ -24,7 +22,6 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
-	lua "github.com/yuin/gopher-lua"
 )
 
 var home string
@@ -47,54 +44,6 @@ var checkCmd = &cobra.Command{
 		}
 		return
 	},
-}
-
-func luaValueToGoValue(value lua.LValue) interface{} {
-	switch v := value.(type) {
-	case *lua.LTable:
-		return luaTableToGoMap(v)
-	case lua.LNumber:
-		return float64(v)
-	case lua.LString:
-		return string(v)
-	case lua.LBool:
-		return bool(v)
-	default:
-		return nil
-	}
-}
-
-func luaTableToGoMap(table *lua.LTable) map[string]interface{} {
-	goMap := make(map[string]interface{})
-	table.ForEach(func(key lua.LValue, value lua.LValue) {
-		switch key.String() {
-		case "services":
-			services := make([]map[string]interface{}, 0)
-			value.(*lua.LTable).ForEach(func(_ lua.LValue, serviceValue lua.LValue) {
-				service := luaTableToGoMap(serviceValue.(*lua.LTable))
-				services = append(services, service)
-			})
-			goMap[key.String()] = services
-		default:
-			goMap[key.String()] = luaValueToGoValue(value)
-		}
-	})
-	return goMap
-}
-
-func ToTable(table *lua.LTable, output interface{}) {
-	goMap := luaTableToGoMap(table)
-
-	jsonData, err := json.Marshal(goMap)
-	if err != nil {
-		fmt.Println("Error converting map to JSON:", err)
-		return
-	}
-
-	err = json.Unmarshal(jsonData, output)
-	if err != nil {
-		fmt.Println("Error unmarshaling JSON into struct:", err)
-	}
 }
 
 func init() {

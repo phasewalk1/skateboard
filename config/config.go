@@ -32,6 +32,16 @@ type Config struct {
 	Services []Service         `toml:"service"`
 }
 
+type Service struct {
+	Name         string `toml:"name"`
+	Github       string `toml:"github"`
+	RunContext   string `toml:"run-ctx" json:"run-ctx"`
+	Cmd          string `toml:"cmd"`
+	Profile      string `toml:"profile,omitempty"`
+	EnvBootstrap string `toml:"env-bootstrap,omitempty"`
+	Sync         string `toml:"sync"`
+}
+
 func (c *Config) Show() {
 	log.Debug("trucks.system!")
 	c.ShowSystem()
@@ -56,10 +66,6 @@ func (c *Config) ShowServices() {
 	}
 }
 
-type ServiceMap struct {
-	Services map[string]map[string]string `json:"services"`
-	Defaults map[string]string            `json:"defaults"`
-}
 
 func (c *Config) PanicIsUnwind() bool {
 	return c.System.Panic == "unwind" || c.System.Panic == ""
@@ -67,20 +73,6 @@ func (c *Config) PanicIsUnwind() bool {
 
 func (c *Config) PanicIsKeep() bool {
 	return c.System.Panic == "keep"
-}
-
-type Service struct {
-	Name         string `toml:"name"`
-	Github       string `toml:"github"`
-	RunContext   string `toml:"run-ctx" json:"run-ctx"`
-	Cmd          string `toml:"cmd"`
-	Profile      string `toml:"profile,omitempty"`
-	EnvBootstrap string `toml:"env-bootstrap,omitempty"`
-	Sync         string `toml:"sync"`
-}
-
-type Services struct {
-	ServiceList []Service `toml:"service"`
 }
 
 func SvcToMap(s *Service) map[string]interface{} {
