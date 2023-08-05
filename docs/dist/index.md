@@ -33,12 +33,14 @@
 
 # skateboard is not virtualization software
 For smaller teams who are deploying applications with only a handful of services, _skateboard_ gives them wheels to share their system without relying on virtualization. This brings a few core advantages over what I would call _container overkill_.
+
 - _skateboard can sync and launch individual services much faster than containerized composers._
 - _skateboard has a much smaller footprint; **no containers means no impactful storage footprint**._
 - _no background daemon and no os-level virtualization means less RAM usage._
 - _trucks allows developers to be more expressive when defining their system than yaml._
 
 Of course -- because _skateboard_ is **not virtualization software** -- this means     
+
 - _It doesn't provide the isolation between processes and system resources like CPU, memory, and I/O offered by full-fledged containerization solutions._
 - _It doesn't provide the same level of system security as software like Docker, which leverages namespaces and cgroups to isolate resources._
 - _It's not designed for deployment across multiple machines; instead, it excels in managing multi-service applications on a single host._
