@@ -1,0 +1,648 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="skateboard Developers">
+      
+      
+        <link rel="canonical" href="https://phasewalk1.github.io/skateboard/">
+      
+      
+      
+        <link rel="next" href="cobra/skateboard/">
+      
+      <link rel="icon" href="assets/skateboard.svg">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
+    
+    
+      
+        <title>skateboard - skateboard</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#skateboard" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="skateboard" class="md-header__button md-logo" aria-label="skateboard" data-md-component="logo">
+      
+  <img src="assets/skateboard.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            skateboard
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              skateboard
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/phasewalk1/skateboard" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="skateboard" class="md-nav__button md-logo" aria-label="skateboard" data-md-component="logo">
+      
+  <img src="assets/skateboard.svg" alt="logo">
+
+    </a>
+    skateboard
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/phasewalk1/skateboard" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index md-nav__link--active">
+          <a href=".">Home</a>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Options
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Options
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cobra/skateboard/" class="md-nav__link">
+        Skateboard
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cobra/skateboard_install/" class="md-nav__link">
+        install
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cobra/skateboard_new/" class="md-nav__link">
+        new
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cobra/skateboard_check/" class="md-nav__link">
+        check
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cobra/skateboard_sync/" class="md-nav__link">
+        sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cobra/skateboard_up/" class="md-nav__link">
+        up
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cobra/skateboard_service/" class="md-nav__link">
+        service
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cobra/skateboard_mkdocs/" class="md-nav__link">
+        mkdocs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cobra/skateboard_completion/" class="md-nav__link">
+        completion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="sections/trucks/">Trucks</a>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Trucks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="skateboard">skateboard</h1>
+<blockquote>
+<blockquote>
+<p>Warning! This is <em>alpha software</em> still under rapid development.</p>
+</blockquote>
+</blockquote>
+<p><a href="https://www.gnu.org/licenses/gpl-3.0"><img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-critical.svg" /></a> <img src="https://img.shields.io/badge/Fennel-1.3.1-green.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAABPklEQVQoz02RO0tDQRCF95rExNII4gNsBGsbHxj9A/4KO61sBBs7f4JE8QWiCLZa2SiIjdjcwk4UDBcUEVSCDzSafJ7Z+8BddtmdOXPmzIxzjoCc7hH2iPjWjvQalSVH4Lw7oMA6tlrZ3aJKERdDCpzxxidNOV6p6/7VhhOKzhbbXDHjY+/oYZAnvZpKBVVzV3inl0UPCPVv58YDLM0PFcchmzLPy2Axl4SZFkuz66gJ5ejnUd9GIpBMbM0AXV7JJA/e2PL06Wo4CStbzTqdLEh5/R9HAhiTs007sKpVR5iJ9CmOWPG9sDRlcQwwnEQnIqd4YUjOks6yTBd0cO854jJl3uKWkmeY5pkluvkSwM5q3Mm8oq7p80pMxUbSk1NjjYeVZ0c9OGCWOc6TYteMNZ2nFTnBMR/eGbHPeDruPzYIcSxR7bvBAAAAAElFTkSuQmCC"/> <img src="https://img.shields.io/badge/Lua-5.4.6-purple.svg?logo=lua"/> <img alt="GitHub go.mod Go version (subdirectory of monorepo)" src="https://img.shields.io/github/go-mod/go-version/phasewalk1/skateboard" /></p>
+<h1 id="your-application-on-wheels">Your application, on wheels</h1>
+<div class="language-scheme highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">(</span><span class="nf">local</span><span class="w"> </span><span class="nv">trucks</span><span class="w"> </span><span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="nv">:trucks</span><span class="p">))</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">(</span><span class="k">do</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="p">(</span><span class="nf">trucks</span><span class="o">.</span><span class="nv">mkconfig!</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="p">(</span><span class="nf">trucks</span><span class="o">.</span><span class="nv">system!</span><span class="w"> </span><span class="err">{</span><span class="nv">:panic</span><span class="w"> </span><span class="s">&quot;unwind&quot;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nv">:verbose</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="err">}</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="c1">;; (trucks.defaults! {:run-ctx &quot;npm&quot;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="c1">;;  :cmd &quot;run devstart&quot;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="c1">;;  :sync &quot;npm install&quot;})</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="p">(</span><span class="nf">trucks</span><span class="o">.</span><span class="nv">service!</span><span class="w"> </span><span class="nv">:docs</span><span class="w"> </span><span class="err">{</span><span class="nv">:github</span><span class="w"> </span><span class="s">&quot;phasewalk1/phasewalk1.github.io&quot;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">                     </span><span class="nv">:run-ctx</span><span class="w"> </span><span class="s">&quot;hugo&quot;</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">                     </span><span class="nv">:cmd</span><span class="w"> </span><span class="s">&quot;serve -D&quot;</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">                     </span><span class="nv">:sync</span><span class="w"> </span><span class="s">&quot;git submodule update --init --recursive&quot;</span><span class="err">}</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="p">(</span><span class="nf">trucks</span><span class="o">.</span><span class="nv">service!</span><span class="w"> </span><span class="nv">:courier</span><span class="w"> </span><span class="err">{</span><span class="nv">:github</span><span class="w"> </span><span class="s">&quot;phasewalk1/courier&quot;</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">                     </span><span class="nv">:run-ctx</span><span class="w"> </span><span class="s">&quot;cargo&quot;</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">                     </span><span class="nv">:cmd</span><span class="w"> </span><span class="s">&quot;watch -x run&quot;</span><span class="err">}</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="p">(</span><span class="nf">local</span><span class="w"> </span><span class="nv">contract</span><span class="w"> </span><span class="p">(</span><span class="nf">trucks</span><span class="o">.</span><span class="nv">contract!</span><span class="p">))</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="nv">contract</span><span class="p">)</span>
+</span></code></pre></div>
+<h1 id="skateboard-is-not-virtualization-software">skateboard is not virtualization software</h1>
+<p>For smaller teams who are deploying applications with only a handful of services, <em>skateboard</em> gives them wheels to share their system without relying on virtualization. This brings a few core advantages over what I would call <em>container overkill</em>.</p>
+<ul>
+<li><em>skateboard can sync and launch individual services much faster than containerized composers.</em></li>
+<li><em>skateboard has a much smaller footprint; <strong>no containers means no impactful storage footprint</strong>.</em></li>
+<li><em>no background daemon and no os-level virtualization means less RAM usage.</em></li>
+<li><em>trucks allows developers to be more expressive when defining their system than yaml.</em></li>
+</ul>
+<p>Of course -- because <em>skateboard</em> is <strong>not virtualization software</strong> -- this means     </p>
+<ul>
+<li><em>It doesn't provide the isolation between processes and system resources like CPU, memory, and I/O offered by full-fledged containerization solutions.</em></li>
+<li><em>It doesn't provide the same level of system security as software like Docker, which leverages namespaces and cgroups to isolate resources.</em></li>
+<li><em>It's not designed for deployment across multiple machines; instead, it excels in managing multi-service applications on a single host.</em></li>
+<li><em>It doesn't have an inbuilt dependency management system. Instead, it assumes that your services are managed by an appropriate language-specific package manager, such as <a href="https://npmjs.com">npm</a>,  <a href="https://doc.rust-lang.org/cargo/">Cargo</a>, <a href="https://pypi.org/project/pip/">pip</a>, etc. Skateboard expects these tools to handle the heavy lifting of dependency management. In a trucks contract, the <code>sync</code> field specifies the command skateboard will run to ensure all dependencies are met, like npm install or cargo build, before it tries to run your services</em></li>
+</ul>
+<p>In other words, skateboard is designed for simplicity and speed in situations where the overhead and complexity of virtualization are unnecessary. By focusing on sharing and running multi-service applications on a single host, it streamlines the development and deployment process for small teams building simpler applications.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li><a href="https://github.com/phasewalk1/skateboard/blob/master/contracts/trucks.contract.fnl">trucks</a><ul>
+<li>Give your application wheels by writing a trucks contract that defines your system and its components. Contracts are written in Lisp syntax using skateboard's <a href="https://github.com/phasewalk1/skateboard/blob/master/trucks/trucks.fnl">trucks library</a> in <a href="https://fennel-lang.org">Fennel</a></li>
+<li><em>skateboard</em> embeds necessary Trucks / Fennel dependencies so you can get started right away</li>
+<li><code>skateboard install</code></li>
+</ul>
+</li>
+<li>Sync service repositories</li>
+<li>Run the system and all it’s services with goroutines in a single shell with unified logs</li>
+<li>A user in possession of a valid <em>trucks contract</em> can spin up the application in a single command<ul>
+<li><code>skateboard up</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="installation">Installation</h1>
+<blockquote>
+<blockquote>
+<p>⚠️
+<em>skateboard assumes you have a Lua runtime installed</em>. If you don't already or you fear your runtime may be out of date, see https://lua.org/download.html.</p>
+</blockquote>
+</blockquote>
+<h3 id="install-the-skateboard-binary-with-go">Install the skateboard binary with go</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w"> </span>go<span class="w"> </span>install<span class="w"> </span>github.com/phasewalk1/skateboard@latest
+</span></code></pre></div>
+<p>Try to run <code>skateboard -h</code> to ensure that <code>$GOPATH/bin</code> is in path, usually at <code>~/go/bin/</code> or <code>/usr/local/go/bin</code>.</p>
+<h3 id="install-trucks">Install trucks</h3>
+<p>This will create a home for skateboard at <code>$HOME/.skateboard</code>, and will sync and build any dependencies needed to work with trucks. 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w"> </span>skateboard<span class="w"> </span>install
+</span></code></pre></div></p>
+<h1 id="usage-examples">Usage / Examples</h1>
+<h3 id="create-a-new-contract">Create a new contract</h3>
+<p>You can scaffold a new contract by running
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>skateboard<span class="w"> </span>new<span class="w"> </span>my-contract
+</span></code></pre></div>
+This will create a directory at <code>my-contract/</code> and initialize it as a git repository; it also scaffolds an example contract for you at <code>trucks.contract.fnl</code> that looks exactly like the example contract above.</p>
+<h3 id="share-your-wheels">Share your wheels</h3>
+<p>Once you've defined your application in a trucks contract, you can share the contract with anyone who has <em>skateboard installed</em>. Once they have your contract, they can run your application on wheels by navigating to the directory the contract is in and running
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>skateboard<span class="w"> </span>up<span class="w"> </span>-n
+</span></code></pre></div></p>
+<blockquote>
+<blockquote>
+<p><em>The <code>-n</code> flag only needs to be passed the first time you run <code>up</code> on a contract. This tells skateboard to clone new copies of the services before attempting to run them; But it can also be used if you have existing copies and want to start with a clean slate, pass <code>--force -n</code> to force clone new copies.</em></p>
+</blockquote>
+</blockquote>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["toc.integrate", "toc.follow", "navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "content.code.copy"], "search": "assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>
