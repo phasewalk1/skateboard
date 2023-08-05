@@ -16,7 +16,7 @@ See each sub-command's help for details on how to use the generated script.
 
 ### SEE ALSO
 
-* [skateboard](skateboard.md)	 - Pack your services once
+* [skateboard](skateboard.md)	 - All your services, on trucks and wheels
 * [skateboard completion bash](skateboard_completion_bash.md)	 - Generate the autocompletion script for bash
 * [skateboard completion fish](skateboard_completion_fish.md)	 - Generate the autocompletion script for fish
 * [skateboard completion powershell](skateboard_completion_powershell.md)	 - Generate the autocompletion script for powershell

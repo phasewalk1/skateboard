@@ -25,10 +25,11 @@
     :cmd "run devstart"
     :sync "npm install"})
 
-  (trucks.service! :fe {:github "mattg1243/sb-frontend"})
+  (trucks.service! :fe {:github "mattg1243/sb-frontend"
+                     :cmd "start"})
   (trucks.service! :courier {:github "phasewalk1/courier"
                      :run-ctx "cargo"
-                     :cmd "watch-x run"})
+                     :cmd "run --release"})
 
   ;; (trucks.mallgrab! (trucks.contract!))
 

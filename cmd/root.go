@@ -25,8 +25,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "skateboard",
-	Short: "Pack your services once",
-	Long:  `Onboarding as fast as light?`,
+	Short: "All your services, on trucks and wheels",
 
 	// Run: func(cmd *cobra.Command, args []string) {
 	// },

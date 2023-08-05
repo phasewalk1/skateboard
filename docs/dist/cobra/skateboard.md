@@ -1,10 +1,6 @@
 ## skateboard
 
-Pack your services once
-
-### Synopsis
-
-Onboarding as fast as light?
+All your services, on trucks and wheels
 
 ### Options
 
