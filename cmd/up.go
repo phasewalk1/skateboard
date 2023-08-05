@@ -16,19 +16,17 @@ package cmd
 
 import (
 	"context"
-	"fmt"
+	"os"
 	"path/filepath"
 	"sync"
 
 	"github.com/phasewalk1/skateboard/bootstrap"
-	"github.com/phasewalk1/skateboard/config"
 	"github.com/phasewalk1/skateboard/util"
 
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
 
-var noSync bool
 var wg sync.WaitGroup
 var startupWg sync.WaitGroup
 
@@ -37,28 +35,63 @@ var upCmd = &cobra.Command{
 	Short: "Spinup the application and all its services",
 	Run: func(cmd *cobra.Command, args []string) {
 		force, _ := cmd.Flags().GetBool("force")
-		contractPath := filepath.Join(".", "skateboard.toml")
+		path, _ := cmd.Flags().GetString("path")
+		newClone, _ := cmd.Flags().GetBool("new-clone")
+		noSync, _ := cmd.Flags().GetBool("no-sync")
 
-		sysConfig, err := config.LoadWorkloadContractFromFile(contractPath)
-		log.Debug("sysConfig.System.Panic:", sysConfig.System.Panic)
+		contractPath := filepath.Join(".", path)
+		log.Debug("skateboard.up", "[load.contract]:", contractPath)
 
 		ctx, cancel := context.WithCancel(context.Background())
-		if !noSync {
+
+		if filepath.Ext(contractPath) == ".fnl" {
+			sysConfig, err := bootstrap.LoadTrucksContract(contractPath)
+			sysConfig.EmplaceDefaults()
 			if err != nil {
-				log.Fatalf("Error loading workload contract from file: %v", err)
+				log.Fatal("config", "fennel", err)
 			}
-			fmt.Println("Syncing service repositories...")
-			util.SyncRemotes(sysConfig.Services, force)
+			if newClone {
+				log.Info("sync", "true", "syncing service repositories...")
+				util.SyncRemotes(sysConfig.Services, force)
+			} else {
+				log.Info("sync", "false", "skipping sync operation")
+			}
+			log.Info("service!", "starting services...", true)
+			bootstrap.Upper(&sysConfig, noSync, ctx, cancel)
+
+			done := make(chan struct{})
+			go func() {
+				select {
+				case <-done:
+					log.Warn("all services have been stopped", "exiting!", 0)
+					os.Exit(0)
+				}
+			}()
+
+			go func() {
+				wg.Wait()
+				close(done)
+			}()
 		} else {
-			fmt.Println("Skipped sync operation")
+			log.Fatal("contract", "failed to read contract path:", contractPath)
 		}
-		bootstrap.Upper(sysConfig, ctx, cancel)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(upCmd)
 
-	upCmd.Flags().BoolVarP(&noSync, "no-sync", "n", false, "Skip syncing repositories")
-	upCmd.Flags().BoolVarP(&force, "force", "f", false, "Pass --force when syncing")
+	// sync repositories w/ HEAD before running
+	upCmd.Flags().BoolP(
+		"new-clone",
+		"n",
+		false,
+		"sync repositories w/ HEAD before running, use --force to override existing copies",
+	)
+	// rm existing copies before cloning a new copy
+	upCmd.Flags().BoolP("force", "f", false, "Pass --force when syncing a new clone")
+	// override default path to contract file
+	upCmd.Flags().StringP("path", "p", "trucks.contract.fnl", "Path to the contract file")
+	// do not run 'service.sync', i.e., skip operations like 'npm install' before running
+	upCmd.Flags().BoolP("no-sync", "x", false, "skip running 'service.sync' on all services")
 }

@@ -17,7 +17,7 @@ package cmd
 import (
 	"path/filepath"
 
-	"github.com/phasewalk1/skateboard/config"
+	"github.com/phasewalk1/skateboard/bootstrap"
 	"github.com/phasewalk1/skateboard/util"
 
 	"github.com/charmbracelet/log"
@@ -33,7 +33,7 @@ var syncCmd = &cobra.Command{
 It loads the service map from the contract and performs operations based on it.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		contractPath := filepath.Join(".", "skateboard.toml")
-		sysConfig, err := config.LoadWorkloadContractFromFile(contractPath)
+		sysConfig, err := bootstrap.LoadTrucksContract(contractPath)
 		if err != nil {
 			log.Fatalf("Error loading workload contract from file: %v", err)
 		}

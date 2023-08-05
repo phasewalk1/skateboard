@@ -28,7 +28,7 @@ var newCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	PreRun: func(cmd *cobra.Command, args []string) {
 		trucks, _ := cmd.Flags().GetBool("trucks")
-        scope := "new.mode"
+		scope := "new.mode"
 		if !trucks {
 			ymode, _ := cmd.Flags().GetBool("yaml")
 			if ymode == false {
@@ -41,7 +41,7 @@ var newCmd = &cobra.Command{
 		}
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-        scope := "new.bootstrap"
+		scope := "new.bootstrap"
 		log.Info(scope, "bootstrapping", args[0])
 		trucks, _ := cmd.Flags().GetBool("trucks")
 		force, _ := cmd.Flags().GetBool("force")

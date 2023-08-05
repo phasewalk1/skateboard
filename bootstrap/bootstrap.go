@@ -17,13 +17,13 @@ package bootstrap
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"reflect"
 	"strings"
 
+	"github.com/charmbracelet/log"
 	"github.com/phasewalk1/skateboard/config"
 )
 
@@ -60,7 +60,7 @@ func BootstrapDir(path string, ymode bool, tmode bool, force bool) error {
 		return err
 	}
 
-	log.Println("New contract repository created at", path)
+	log.Info("New contract repository created at", path)
 	return nil
 }
 
@@ -83,7 +83,13 @@ func bootstrapContract(path string, ymode bool) error {
 }
 
 func bootstrapTrucksContract(path string) error {
-	trucksBytes, err := ioutil.ReadFile("./contracts/trucks.contract.fnl")
+	home, err := SkateboardPath()
+	if err != nil {
+		log.Fatal("skateboard", "home", err)
+		return err
+	}
+	templPath := filepath.Join(home, "templates/trucks.contract.fnl")
+	trucksBytes, err := ioutil.ReadFile(templPath)
 	if err != nil {
 		log.Fatal(err)
 		return err
@@ -99,11 +105,12 @@ func bootstrapTrucksContract(path string) error {
 	if err != nil {
 		return err
 	}
+	log.Info("example contract written!", "(trucks)", "trucks.contract.fnl")
 	return nil
 }
 
 func boostrapYaml(path string) error {
-	log.Println("bootstrapYaml called!")
+	log.Info("bootstrapYaml called!")
 	return nil
 }
 
@@ -147,6 +154,6 @@ func bootstrapToml(path string) error {
 		log.Fatal("Error writing contract content:", err)
 		return err
 	}
-	log.Println("Example contract written to", tomlFilePath)
+	log.Info("example contract written!", "(toml)", "trucks.contract.toml")
 	return nil
 }

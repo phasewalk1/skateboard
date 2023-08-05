@@ -15,9 +15,26 @@ Copyright (C) 2023 Ethan Gallucci
 package main
 
 import (
+	"os"
+	"os/signal"
+	"syscall"
+
 	"github.com/phasewalk1/skateboard/cmd"
+	"github.com/phasewalk1/skateboard/service"
 )
 
 func main() {
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+	go func() {
+		<-c
+		for _, cmd := range service.Work {
+			if cmd.Process != nil {
+				// cmd.Process.Kill()
+				syscall.Kill(-cmd.Process.Pid, syscall.SIGTERM)
+			}
+		}
+		os.Exit(1)
+	}()
 	cmd.Execute()
 }

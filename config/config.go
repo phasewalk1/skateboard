@@ -16,9 +16,10 @@ package config
 
 import (
 	"io/ioutil"
+	"path/filepath"
 
-    "github.com/charmbracelet/log"
 	"github.com/BurntSushi/toml"
+	"github.com/charmbracelet/log"
 )
 
 type System struct {
@@ -32,10 +33,10 @@ type Config struct {
 }
 
 func (c *Config) Show() {
-    log.Debug("trucks.system!")
+	log.Debug("trucks.system!")
 	c.ShowSystem()
 	c.ShowDefaults()
-    log.Debug("trucks.service!")
+	log.Debug("trucks.service!")
 	c.ShowServices()
 }
 
@@ -45,13 +46,13 @@ func (c *Config) ShowSystem() {
 
 func (c *Config) ShowDefaults() {
 	for setting, val := range c.Defaults {
-        log.Debug("trucks.defaults!", setting, val)
+		log.Debug("trucks.defaults!", setting, val)
 	}
 }
 
 func (c *Config) ShowServices() {
 	for svc := range c.Services {
-        log.Debug("trucks.service!", c.Services[svc])
+		log.Debug("trucks.service!", c.Services[svc])
 	}
 }
 
@@ -71,7 +72,7 @@ func (c *Config) PanicIsKeep() bool {
 type Service struct {
 	Name         string `toml:"name"`
 	Github       string `toml:"github"`
-	RunContext   string `toml:"run-ctx"`
+	RunContext   string `toml:"run-ctx" json:"run-ctx"`
 	Cmd          string `toml:"cmd"`
 	Profile      string `toml:"profile,omitempty"`
 	EnvBootstrap string `toml:"env-bootstrap,omitempty"`
@@ -114,13 +115,17 @@ func DefaultSvcMap() []Service {
 func LoadWorkloadContractFromFile(filePath string) (*Config, error) {
 	var config Config
 
-	data, err := ioutil.ReadFile(filePath)
-	if err != nil {
-		return nil, err
-	}
+	if filepath.Ext(filePath) == ".toml" {
+		data, err := ioutil.ReadFile(filePath)
+		if err != nil {
+			return nil, err
+		}
 
-	if _, err := toml.Decode(string(data), &config); err != nil {
-		return nil, err
+		if _, err := toml.Decode(string(data), &config); err != nil {
+			return nil, err
+		}
+	} else if filepath.Ext(filePath) == ".fnl" {
+
 	}
 
 	return &config, nil

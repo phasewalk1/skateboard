@@ -18,7 +18,6 @@ import (
 	"context"
 	"fmt"
 	"os/exec"
-	"strings"
 	"sync"
 
 	"github.com/phasewalk1/skateboard/config"
@@ -34,8 +33,6 @@ func RunSvc(
 	cancel context.CancelFunc,
 ) {
 	defer wg.Done()
-	repoName := strings.Split(svc.Github, "/")[1]
-	fmt.Println("repoName:", repoName)
 
 	if svc.RunContext != "" {
 		// Watch for cancellation

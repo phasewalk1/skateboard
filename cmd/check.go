@@ -18,9 +18,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/phasewalk1/skateboard/bootstrap"
-	"github.com/phasewalk1/skateboard/config"
 
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
@@ -37,48 +37,15 @@ var checkCmd = &cobra.Command{
 	Use:   "check",
 	Short: "Checks a contract for validity",
 	Run: func(cmd *cobra.Command, args []string) {
-		log.Debug("running check command")
-
-		log.Debug("starting a new Lua state")
-		L := lua.NewState()
-		log.Debug("defer: closing Lua state")
-		defer L.Close()
-
-		home, _ := cmd.Flags().GetString("home")
-		log.Debug("active-home: ", home)
-		homeIncld := fmt.Sprintf("%s/include", home)
-		log.Debug("active-include: ", homeIncld)
-		extendLuaPath := fmt.Sprintf("package.path = package.path .. ';%s/?.lua'", homeIncld)
-		log.Debug("extending Lua package.path: ", extendLuaPath)
-		if err := L.DoString(extendLuaPath); err != nil {
-			log.Fatal("failed to extend Lua package.path: ", err)
+		path := filepath.Join(".", "trucks.contract.fnl")
+		if _, err := os.Stat(path); err != nil {
+			path = filepath.Join(".", "trucks.contract.toml")
+		}
+		if _, err := bootstrap.LoadTrucksContract(path); err != nil {
+			log.Fatal("check", "contract", err)
 			return
 		}
-		pwd, err := os.Getwd()
-		if err != nil {
-			log.Fatal("failed to get current working directory: ", err)
-			return
-		}
-		log.Debug("current working directory: ", pwd)
-		execFnl := "config = require 'fennel'.dofile('trucks.contract.fnl'); return config"
-		if err := L.DoString(execFnl); err != nil {
-			log.Fatal("failed to execute fennel.dofile('trucks.contract.fnl'): ", err)
-			return
-		}
-
-		luaConfig := L.Get(-1)
-		fmt.Println(luaConfig.String())
-
-		if _, ok := luaConfig.(*lua.LTable); !ok {
-			log.Warn("fennel")
-			log.Debug("returned value: ", luaConfig.String())
-			log.Fatal("failed to load trucks.contract.lua: ", err)
-			return
-		}
-		var cfg config.Config
-		ToTable(luaConfig.(*lua.LTable), &cfg)
-        log.Info("trucks contract is valid ✓")
-		cfg.Show()
+		return
 	},
 }
 

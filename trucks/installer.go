@@ -41,7 +41,7 @@ func BootstrapTrucks(home string, noDeps bool) error {
 func checkoutAndBuildFennel() error {
 	fnlSrcRemote := "https://git.sr.ht/~technomancy/fennel"
 
-    scope := "trucks.install.fennel"
+	scope := "trucks.install.fennel"
 	log.Debug(scope, "checking out Fennel source...")
 	log.Debug(scope, "remote:", fnlSrcRemote)
 
@@ -64,7 +64,7 @@ func mvFennelLibToHome(home string) error {
 		return err
 	}
 
-    scope := "trucks.install.fennel"
+	scope := "trucks.install.fennel"
 
 	err = os.Mkdir("include", 0755)
 	if err != nil {
@@ -90,7 +90,7 @@ func mvFennelLibToHome(home string) error {
 func installTrucks() error {
 	sk8 := "https://github.com/phasewalk1/skateboard"
 
-    scope := "trucks.install.trucks"
+	scope := "trucks.install.trucks"
 
 	cloneSkateboard := exec.Command("git", "clone", "--branch", "master", sk8)
 	util.ExecWithFatal(cloneSkateboard, scope, "Error cloning skateboard:")
@@ -111,12 +111,14 @@ func installTrucks() error {
 
 	cpObjects := exec.Command("sh", "-c", "cp -r include/*.lua ../include")
 	util.ExecWithFatal(cpObjects, scope, "Error copying trucks objects:")
+	cpTemplates := exec.Command("sh", "-c", "cp -r contracts/ ../templates")
+	util.ExecWithFatal(cpTemplates, scope, "Error copying example contracts:")
 
 	getTrucks := exec.Command("cp", "-r", "trucks", "..")
-	util.ExecWithFatal(getTrucks, scope ,"Error copying trucks:")
+	util.ExecWithFatal(getTrucks, scope, "Error copying trucks:")
 
-    rmUnwanted := exec.Command("rm", "../trucks/installer.go")
-    util.ExecWithFatal(rmUnwanted, scope, "Error pruning trucks:")
+	rmUnwanted := exec.Command("rm", "../trucks/installer.go")
+	util.ExecWithFatal(rmUnwanted, scope, "Error pruning trucks:")
 
 	err = os.Chdir("..")
 	if err != nil {

@@ -16,33 +16,37 @@ package bootstrap
 
 import (
 	"context"
-	"fmt"
-	"log"
 	"sync"
 
+	"github.com/charmbracelet/log"
 	"github.com/phasewalk1/skateboard/config"
 	"github.com/phasewalk1/skateboard/service"
 )
 
-func Upper(cfg *config.Config, ctx context.Context, cancel context.CancelFunc) error {
+func Upper(cfg *config.Config, noSync bool, ctx context.Context, cancel context.CancelFunc) error {
 	defer cancel()
+	log.Debug("service!", "defer:", "cancel()")
 	errChan := make(chan error, len(cfg.Services))
+	log.Debug("service!", "channels", "made error chan")
 	var wg sync.WaitGroup
 
 	for _, svc := range cfg.Services {
+		log.Debug("service!", "service:", svc)
 		wg.Add(1)
+		log.Debug("service!", "waitgroup:", "adding 1...")
 		go func(svc config.Service) {
-			defer wg.Done()
+			log.Debug("service!", "defer:", "wg.Done()")
 
-			fmt.Printf("Starting service: %s\n", svc.Name)
-			cmd, err := service.StartSvc(ctx, svc)
+			log.Info("service!", "starting", true)
+			cmd, err := service.StartSvc(ctx, svc, noSync)
 			if err != nil {
 				errChan <- err
+				wg.Done()
 				return
 			}
 
 			service.RunSvc(&wg, ctx, cfg, cmd, svc, errChan, cancel)
-			fmt.Printf("Finished service: %s\n", svc.Name)
+			log.Info("service!", "running", true)
 		}(svc)
 	}
 
@@ -53,10 +57,10 @@ func Upper(cfg *config.Config, ctx context.Context, cancel context.CancelFunc) e
 
 	for err := range errChan {
 		if err != nil && cfg.PanicIsUnwind() {
-			log.Println("Error in service:", err)
+			log.Warn("service!", "error in service:", err)
 			cancel()
 			for _, cmd := range service.Work {
-				log.Println("Halting!:", cmd.Args)
+				log.Warn("service!", "halting!:", cmd.Args)
 				if cmd.Process != nil {
 					cmd.Process.Kill()
 				}

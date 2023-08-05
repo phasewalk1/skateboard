@@ -15,12 +15,12 @@ Copyright (C) 2023 Ethan Gallucci
 package util
 
 import (
-	"log"
 	"os"
 	"os/exec"
 	"strings"
 	"sync"
 
+	"github.com/charmbracelet/log"
 	"github.com/phasewalk1/skateboard/config"
 )
 
@@ -51,35 +51,41 @@ func SyncRemotes(svcSlice []config.Service, force bool) error {
 			out, err := cmd.CombinedOutput()
 
 			if err != nil {
-				log.Println("Failed to clone '" + gitUrl + "': " + err.Error())
+				log.Warn("Failed to clone '" + gitUrl + "': " + err.Error())
 			} else {
-				log.Println("Synced '" + svcName + "' with remote repository " + svc.Github + "':\n" + string(out))
+				log.Info("Synced '" + svcName + "' with remote repository " + svc.Github + "':\n" + string(out))
 			}
 
 			if svc.Sync != "" {
-				customSyncParts := strings.Split(svc.Sync, " ")
-				cmd := exec.Command(customSyncParts[0], customSyncParts[1:]...)
-				cmd.Dir = repoName
-				cmd.Stdout = os.Stdout
-				cmd.Stderr = os.Stderr
-
-				log.Printf("Executing '%s' within '%s'", cmd.Args, cmd.Dir)
-				err := cmd.Start()
-				if err != nil {
-					log.Println("Failed to run svc.sync:", svc.Sync)
-				} else {
-					err = cmd.Wait()
-					if err != nil {
-						log.Fatal("svc.sync:", string(out))
-					} else {
-						log.Println("svc.sync:", string(out))
-					}
-				}
+				CallServiceSync(&svc, repoName)
 			}
 		}(svc)
 	}
 
 	wg.Wait()
 	log.Print("Finished syncing components against contract")
+	return nil
+}
+
+func CallServiceSync(s *config.Service, dir string) error {
+	if s.Sync != "" {
+		customSyncParts := strings.Split(s.Sync, " ")
+		cmd := exec.Command(customSyncParts[0], customSyncParts[1:]...)
+		cmd.Dir = dir
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+
+		err := cmd.Start()
+		if err != nil {
+			log.Fatal("service!", "sync", err)
+		} else {
+			err = cmd.Wait()
+			if err != nil {
+				log.Fatal("service!", "sync", err)
+			} else {
+				log.Info("service!", "sync-return", err)
+			}
+		}
+	}
 	return nil
 }

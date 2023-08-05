@@ -31,9 +31,9 @@ var WorkMutex sync.Mutex
 func StartSvc(
 	ctx context.Context,
 	svc config.Service,
+	noSync bool,
 ) (*exec.Cmd, error) {
 	repoName := strings.Split(svc.Github, "/")[1]
-	fmt.Println("repoName:", repoName)
 
 	if svc.RunContext != "" {
 		cmdArgs := append([]string{svc.RunContext}, strings.Split(svc.Cmd, " ")...)
@@ -66,6 +66,5 @@ func StartSvc(
 		return cmd, nil
 	}
 
-	fmt.Println("svc.RunContext is empty")
 	return nil, nil
 }
