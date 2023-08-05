@@ -60,7 +60,7 @@ In other words, skateboard is designed for simplicity and speed in situations wh
 >> ⚠️
 >> _skateboard assumes you have a Lua runtime installed_. If you don't already or you fear your runtime may be out of date, see https://lua.org/download.html.
 
-## Install the skateboard binary with go
+### Install the skateboard binary with go
 
 ```bash
  go install github.com/phasewalk1/skateboard@latest
@@ -68,22 +68,11 @@ In other words, skateboard is designed for simplicity and speed in situations wh
 
 Try to run `skateboard -h` to ensure that `$GOPATH/bin` is in path, usually at `~/go/bin/` or `/usr/local/go/bin`.
 
-## Install trucks
+### Install trucks
 This will create a home for skateboard at `$HOME/.skateboard`, and will sync and build any dependencies needed to work with trucks. 
 ```bash
  skateboard install
 ```
-# Usage / Examples
-## Create a new contract
-You can scaffold a new contract by running
-```bash
-skateboard new my-contract
-```
-This will create a directory at `my-contract/` and initialize it as a git repository; it also scaffolds an example contract for you at `trucks.contract.fnl` that looks exactly like the example contract above.
 
-## Share your wheels
-Once you've defined your application in a trucks contract, you can share the contract with anyone who has _skateboard installed_. Once they have your contract, they can run your application on wheels by navigating to the directory the contract is in and running
-```bash
-skateboard up -n
-```
->> _The `-n` (or `--new-clone`) flag only needs to be passed the first time you run `up` on a contract. This tells skateboard to clone new copies of the services before attempting to run them; But it can also be used if you have existing copies and want to start with a clean slate, pass `--force -n` to force clone new copies. You can also run `up -x` (or `up --no-sync`) to skip running any _sync_ operations defined on the services, i.e., to skip running `npm install` if you already have the necessary node modules from a previous `up` invocation._
+# Documentation
+More detailed documentation for _skateboard_ and _trucks_ cam be found at [phasewalk1.github.io/skateboard](https://phasewalk1.github.io/skateboard).
