@@ -1,5 +1,6 @@
 site_name: skateboard
 site_url: https://phasewalk1.github.io/skateboard
+repo_url: https://github.com/phasewalk1/skateboard
 site_author: skateboard Developers
 docs_dir: dist
 
