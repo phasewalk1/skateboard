@@ -5,7 +5,8 @@
     </h1>
 </div>
 
->> Warning! This is _alpha software_ still under rapid development. Check back later for a v1 release.
+<br/>
+>> This is _alpha software_ still under rapid development. Check back later for a v1 release.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-critical.svg)](https://www.gnu.org/licenses/gpl-3.0) <img src="https://img.shields.io/badge/Fennel-1.3.1-green.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAABPklEQVQoz02RO0tDQRCF95rExNII4gNsBGsbHxj9A/4KO61sBBs7f4JE8QWiCLZa2SiIjdjcwk4UDBcUEVSCDzSafJ7Z+8BddtmdOXPmzIxzjoCc7hH2iPjWjvQalSVH4Lw7oMA6tlrZ3aJKERdDCpzxxidNOV6p6/7VhhOKzhbbXDHjY+/oYZAnvZpKBVVzV3inl0UPCPVv58YDLM0PFcchmzLPy2Axl4SZFkuz66gJ5ejnUd9GIpBMbM0AXV7JJA/e2PL06Wo4CStbzTqdLEh5/R9HAhiTs007sKpVR5iJ9CmOWPG9sDRlcQwwnEQnIqd4YUjOks6yTBd0cO854jJl3uKWkmeY5pkluvkSwM5q3Mm8oq7p80pMxUbSk1NjjYeVZ0c9OGCWOc6TYteMNZ2nFTnBMR/eGbHPeDruPzYIcSxR7bvBAAAAAElFTkSuQmCC"/> <img src="https://img.shields.io/badge/Lua-5.4.6-purple.svg?logo=lua"/> ![GitHub go.mod Go version (subdirectory of monorepo)](https://img.shields.io/github/go-mod/go-version/phasewalk1/skateboard)
 
