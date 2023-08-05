@@ -33,16 +33,18 @@
 
 # skateboard is not virtualization software
 For smaller teams who are deploying applications with only a handful of services, _skateboard_ gives them wheels to share their system without relying on virtualization. This brings a few core advantages over what I would call _container overkill_.
-1. _skateboard can sync and launch individual services much faster than containerized composers._
-2. _skateboard has a much smaller footprint; **no containers means no impactful storage footprint**._
-3. _no background daemon and no os-level virtualization means less RAM usage._
-4. _trucks allows developers to be more expressive when defining their system than yaml._
+
+- _skateboard can sync and launch individual services much faster than containerized composers._
+- _skateboard has a much smaller footprint; **no containers means no impactful storage footprint**._
+- _no background daemon and no os-level virtualization means less RAM usage._
+- _trucks allows developers to be more expressive when defining their system than yaml._
 
 Of course -- because _skateboard_ is **not virtualization software** -- this means     
-1. _It doesn't provide the isolation between processes and system resources like CPU, memory, and I/O offered by full-fledged containerization solutions._
-2. _It doesn't provide the same level of system security as software like Docker, which leverages namespaces and cgroups to isolate resources._
-3. _It's not designed for deployment across multiple machines; instead, it excels in managing multi-service applications on a single host._
-4. _It doesn't have an inbuilt dependency management system. Instead, it assumes that your services are managed by an appropriate language-specific package manager, such as [npm](https://npmjs.com),  [Cargo](https://doc.rust-lang.org/cargo/), [pip](https://pypi.org/project/pip/), etc. Skateboard expects these tools to handle the heavy lifting of dependency management. In a trucks contract, the `sync` field specifies the command skateboard will run to ensure all dependencies are met, like npm install or cargo build, before it tries to run your services_
+
+- _It doesn't provide the isolation between processes and system resources like CPU, memory, and I/O offered by full-fledged containerization solutions._
+- _It doesn't provide the same level of system security as software like Docker, which leverages namespaces and cgroups to isolate resources._
+- _It's not designed for deployment across multiple machines; instead, it excels in managing multi-service applications on a single host._
+- _It doesn't have an inbuilt dependency management system. Instead, it assumes that your services are managed by an appropriate language-specific package manager, such as [npm](https://npmjs.com),  [Cargo](https://doc.rust-lang.org/cargo/), [pip](https://pypi.org/project/pip/), etc. Skateboard expects these tools to handle the heavy lifting of dependency management. In a trucks contract, the `sync` field specifies the command skateboard will run to ensure all dependencies are met, like npm install or cargo build, before it tries to run your services_
 
 In other words, skateboard is designed for simplicity and speed in situations where the overhead and complexity of virtualization are unnecessary. By focusing on sharing and running multi-service applications on a single host, it streamlines the development and deployment process for small teams building simpler applications.
 
