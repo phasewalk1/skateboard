@@ -43,12 +43,16 @@ Working in a small team but want to onboard new developers without having them c
 ## Features
 - [trucks](https://github.com/phasewalk1/skateboard/blob/master/contracts/trucks.contract.fnl)
     - Give your application wheels by writing a trucks contract that defines your system and its components. Contracts are written in Lisp syntax using skateboard's [trucks library](https://github.com/phasewalk1/skateboard/blob/master/trucks/trucks.fnl) in [Fennel](https://fennel-lang.org)
-    - _skateboard_ embeds any necessary dependencies so you can get started right away with `skateboard install`
+    - _skateboard_ embeds necessary Trucks / Fennel dependencies so you can get started right away
+      + `skateboard install`
 - Sync service repositories
 - Run the system and all it’s services with goroutines in a single shell with unified logs
-  - A user in possession of a valid _trucks contract_ can spin up the application in a single command, `skateboard up`
+  - A user in possession of a valid _trucks contract_ can spin up the application in a single command
+    + `skateboard up`
 
 ## Installation
+>> ⚠️
+>> _skateboard assumes you have a Lua runtime installed_. If you don't already or you fear your runtime may be out of date, see https://lua.org/download.html.
 
 ### Install the skateboard binary with go
 
@@ -98,5 +102,6 @@ This will create a directory at `my-contract/` and initialize it as a git reposi
 ### Share your wheels
 Once you've defined your application in a trucks contract, you can share the contract with anyone who has _skateboard installed_. Once they have your contract, they can run your application on wheels by navigating to the directory the contract is in and running
 ```bash
-skateboard up
+skateboard up -n
 ```
+>> _The `-n` (or `--new-clone`) flag only needs to be passed the first time you run `up` on a contract. This tells skateboard to clone new copies of the services before attempting to run them; But it can also be used if you have existing copies and want to start with a clean slate, pass `--force -n` to force clone new copies. You can also run `up -x` (or `up --no-sync`) to skip running any _sync_ operations defined on the services, i.e., to skip running `npm install` if you already have the necessary node modules from a previous `up` invocation._
