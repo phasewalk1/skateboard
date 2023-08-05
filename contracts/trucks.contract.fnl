@@ -10,7 +10,7 @@
     :cmd "run devstart"
     :sync "npm install"})
 
-  (trucks.service! {:github "mattg1243/sb-user-service"})
+  (trucks.service! :user {:github "mattg1243/sb-user-service"})
   (trucks.service! :fe {:github "mattg1243/sb-frontend"
                      :cmd "start"})
   (trucks.service! :courier {:github "phasewalk1/courier"
